@@ -1,5 +1,18 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import styled from "styled-components";
+
+const StyledProfile = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+const Avatar = styled.img`
+  border-radius: 50%;
+`;
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -14,12 +27,12 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div>
+      <StyledProfile>
         <p>User isAuthenticated</p>
-        <img src={user?.picture} alt={user?.name} />
+        <Avatar src={user?.picture} alt={user?.name} />
         <h2>{user?.name}</h2>
         <p>{user?.email}</p>
-      </div>
+      </StyledProfile>
     )
   );
 };
